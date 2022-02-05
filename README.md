@@ -12,9 +12,9 @@ originally shown to work together Angular.
 ## Solution "AtriisProducts" structure
 
 - Frontend - Project "ProductClient" uses Angular, TypeScript, Bootstrap
-- Beckend - Project "ProductApi" uses Asp Net Core 3.1
+- Backend - Project "ProductApi" uses Asp Net Core 3.1
 
-#### Beckend
+## Backend
 
 - ProductApi.sln is the entry point for "classic" editions of Visual Studio (Pro, Community, etc).
 - ProductApi/ProductApi.csproj is a Web api (asp net core) project.
