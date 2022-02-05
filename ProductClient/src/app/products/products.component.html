@@ -1,14 +1,19 @@
-<div><h2 style="display: inline;"><strong>Products:</strong></h2><span *ngIf="loading">Loading...</span></div>
-
 <div>
+  <h2 style="display: inline;"><strong>Products:</strong></h2>
+  <span *ngIf="loading">  Loading...</span>
+</div>
+
+<div class="search">
   <label for="search-product">Search: </label>
   <input type="search" id="search-product" [(ngModel)]="productFilter" />
 </div>
 
-<ul class="products">
-  <li *ngFor="let product of (products | filter:productFilter) as products">
-    <a routerLink="/detail/{{product.sku}}">
-      <span class="badge">{{product.sku}}</span> {{product.name}}
-    </a>
-  </li>
-</ul>
+<div class="products-container">
+  <ul class="products">
+    <li *ngFor="let product of (products | filter:productFilter) as products">
+      <a routerLink="/detail/{{product.sku}}">
+        <span class="badge">{{product.sku}}</span> {{product.name}}
+      </a>
+    </li>
+  </ul>
+</div>

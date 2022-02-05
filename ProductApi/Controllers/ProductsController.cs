@@ -18,7 +18,7 @@ namespace ProductApi.Controllers
             _dataService = dataService;
         }
 
-        [HttpGet("{productFilter?}")]
+        [HttpGet] //("{productFilter?}")
         [SwaggerOperation(Summary = "Get all products", Description = "Get products from the Bestbuy Product Api")]
         public async Task<IEnumerable<Product>> GetProducts(int pageSize = 50, int page = 1, string productFilter = null)
         {

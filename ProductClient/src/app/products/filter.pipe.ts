@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Product } from '../models/product';
 
 @Pipe({
   name: 'filter'
@@ -9,7 +10,7 @@ export class FilterPipe implements PipeTransform {
 
     if (!searchValue) return value;
     
-    return value.filter((v: any) => v.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1 
-        || v.size.toLowerCase().indexOf(searchValue.toLowerCase()) > -1)
+    return value.filter((v: Product) => 
+      v.name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1)
   }
 }

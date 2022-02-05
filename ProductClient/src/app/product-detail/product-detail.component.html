@@ -1,23 +1,29 @@
-<div *ngIf="product" class="container">
-  
-  <div><h2><strong>Details:</strong></h2><span *ngIf="loading">Loading...</span></div>
+<div *ngIf="product" class="container col-12">
 
-  <div class="row prop-row">
-    <div class="prop-lbl" id="product-sku">SKU: </div>
-    <input id="product-sku" readonly [(ngModel)]="product.sku" placeholder="Product sku"/>
+  <div>
+    <h2><strong>Details:</strong></h2><span *ngIf="loading">Loading...</span>
   </div>
-  <div class="row prop-row">
-    <div class="prop-lbl" for="product-name">Product name: </div>
-    <input id="product-name" readonly [(ngModel)]="product.name" placeholder="Product name"/>
-  </div>
-  <div class="row prop-row"> 
-    <div class="prop-lbl" for="product-price">Product price: </div>
-    <input id="product-price" readonly [(ngModel)]="product.price" placeholder="Product price"/>
-  </div>
-  <div class="row prop-row"> 
-    <div class="prop-lbl" for="product-image">Product image: </div>
-    <br>
-    <img id="product-image" src="{{product.image}}" alt="Girl in a jacket" width="300" height="400" placeholder="Product price">
+
+  <div class="col-6">
+    <div class="row prop-row">
+      <div class="prop-lbl" id="product-sku">SKU: </div>
+      <input id="product-sku" readonly [(ngModel)]="product.sku" placeholder="Product sku" />
+    </div>
+    <div class="row prop-row">
+      <div class="prop-lbl" for="product-name">Product name: </div>
+      <input id="product-name" readonly [(ngModel)]="product.name" placeholder="Product name" />
+    </div>
+    <div class="row prop-row">
+      <div class="prop-lbl" for="product-price">Product price: </div>
+      <input id="product-price" readonly [(ngModel)]="product.price" placeholder="Product price" />
+    </div>
+    <div class="row prop-row">
+      <div class="prop-lbl" for="product-image">Product image: </div>
+    </div>
+    <div class="prop-row">
+      <img id="product-image" src="{{product.image}}" alt="Product image" width="400" height="400"
+        placeholder="Product image">
+    </div>
   </div>
 
   <button type="button" (click)="goBack()">go back</button>
