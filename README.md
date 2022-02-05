@@ -26,11 +26,11 @@ and it starts as console application
 
 - cd [RootDirectory]\ProductClient
 - required once:
-    Windows install (Angular CLI requires a minimum nodejs version): 
-    https://nodejs.org/en/ => node-v16.13.2-x64.msi download => install
-    npm install -g npm
-    npm install -g npm@8.4.1
-    npm install -g @angular/cli@latest
+    - Windows install (Angular CLI requires a minimum nodejs version): 
+    - https://nodejs.org/en/ => node-v16.13.2-x64.msi download => install
+    - npm install -g npm
+    - npm install -g npm@8.4.1
+    - npm install -g @angular/cli@latest
 - ng serve --open
 - client by default working on http://localhost:4200 (if port 4200 already in use, select the other free port)
 - client working with web api started on http://localhost:5000
