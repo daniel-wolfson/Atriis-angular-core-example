@@ -22,9 +22,14 @@ Current RootDirectory: [[drive:\\projects]\atriis_angular_core]
 - ProductApi.Tests/ProductApi.Tests.csproj is a unit test for web api project.
 - Productlient - Angular client
 
-## Set local angular environment:
-- npm - v (npm is required installed)
-- npm install -g @angular/cli@latest
+## Set local angular environment by call cmd and install command:
+- Windows install (Angular CLI requires a minimum nodejs version): https://nodejs.org/en/ => node-v16.13.2-x64.msi download => install
+- CMD: npm install
+- CMD: npm install -g @angular/cli@latest
+- CMD: ng update
+- CMD: npm cache clean --force (maybe required)
+
+
 
 ## Build and start ProductClient (Angular client)
 
