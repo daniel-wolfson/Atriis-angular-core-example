@@ -22,7 +22,7 @@ export class ProductService {
     private messageService: MessageService) { }
 
   /** GET products from the server */
-  getProducts(productName: string): Observable<Product[]> {
+  getProducts(productName: string = ''): Observable<Product[]> {
     
     var productFilter = productName && productName != '' ? '?productFilter=' : '';
 

@@ -9,9 +9,9 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[] = [];
   loading: boolean = false;
-  productFilter: string = ""
+  products: Product[] = [];
+  productFilter: string = "";
 
   constructor(private productService: ProductService) { }
 
@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
 
   getProducts(): void {
     this.loading=true;
-    this.productService.getProducts(this.productFilter)
+    this.productService.getProducts() //this.productFilter
     .subscribe(products => {
       this.products = products;
       this.loading=false;

@@ -87,7 +87,7 @@ namespace ProductApi.Services
                 _logger.Error(ex.InnerException?.Message ?? ex.Message);
             }
 
-            if (string.IsNullOrEmpty(productFilter))
+            if (!string.IsNullOrEmpty(productFilter))
             {
                 results = results.Where(x => x.Name.Contains(productFilter));
             }

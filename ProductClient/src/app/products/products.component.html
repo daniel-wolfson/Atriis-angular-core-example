@@ -2,11 +2,11 @@
 
 <div>
   <label for="search-product">Search: </label>
-  <input id="search-product" [(ngModel)]="productFilter" #productFilter />
+  <input type="search" id="search-product" [(ngModel)]="productFilter" />
 </div>
 
 <ul class="products">
-  <li *ngFor="let product of products">
+  <li *ngFor="let product of (products | filter:productFilter) as products">
     <a routerLink="/detail/{{product.sku}}">
       <span class="badge">{{product.sku}}</span> {{product.name}}
     </a>

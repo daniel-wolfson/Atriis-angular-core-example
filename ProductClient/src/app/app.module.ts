@@ -14,6 +14,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductsComponent } from './products/products.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { MessagesComponent } from './messages/messages.component';
+import { FilterPipe } from './products/filter.pipe';
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import { MessagesComponent } from './messages/messages.component';
     ProductsComponent,
     ProductDetailComponent,
     MessagesComponent,
-    ProductSearchComponent
+    ProductSearchComponent, FilterPipe
   ],
   bootstrap: [ AppComponent ]
 })
