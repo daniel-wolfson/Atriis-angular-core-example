@@ -1,24 +1,22 @@
-﻿using System;
-using System.Net.Http;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Net.Http;
 
 namespace ProductApi.Core
 {
     public static class HttpClientExtensions
     {
-        public static void AddHttpClient(this IServiceCollection services, string namedHttpClient, IConfiguration config)
+        public static void AddHttpClient(this IServiceCollection services, string namedEndpoint, IConfiguration config)
         {
-            var apiKey = config.GetSection($"AppConfig:ApiKey").Value;
             var endpoint = config.GetSection($"AppConfig:Endpoint").Value;
 
-            services.AddHttpClient(namedHttpClient,
+            services.AddHttpClient(namedEndpoint,
                 httpClient =>
                 {
-                    httpClient.BaseAddress = 
-                        new Uri($"{endpoint}{namedHttpClient}?pageSize=50&format=json&show=sku,name,salePrice,image,startDate&apiKey={apiKey}");
+                    httpClient.BaseAddress = new Uri($"{endpoint}{namedEndpoint}");
                     httpClient.Timeout = TimeSpan.FromSeconds(10);
                 })
                 .ConfigurePrimaryHttpMessageHandler(provider =>

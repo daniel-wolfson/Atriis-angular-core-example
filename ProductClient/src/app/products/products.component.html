@@ -1,13 +1,8 @@
-<h2>My Products</h2>
+<div><h2 style="display: inline;"><strong>Products:</strong></h2><span *ngIf="loading">Loading...</span></div>
 
 <div>
-  <label for="new-product">Product name: </label>
-  <input id="new-product" #productName />
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(productName.value); productName.value=''">
-    Add product
-  </button>
+  <label for="search-product">Search: </label>
+  <input id="search-product" [(ngModel)]="productFilter" #productFilter />
 </div>
 
 <ul class="products">
@@ -15,7 +10,5 @@
     <a routerLink="/detail/{{product.sku}}">
       <span class="badge">{{product.sku}}</span> {{product.name}}
     </a>
-    <button type="button" class="delete" title="delete product"
-      (click)="delete(product)">x</button>
   </li>
 </ul>

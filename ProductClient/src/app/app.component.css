@@ -1,4 +1,8 @@
 /* AppComponent's private CSS styles */
+html, body {
+  min-height:100vh;
+  height: auto;
+}
 h1 {
   margin-bottom: 0;
 }

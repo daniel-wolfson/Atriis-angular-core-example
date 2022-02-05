@@ -2,7 +2,7 @@
 
 namespace ProductApi.Models
 {
-    public class BestbuyOptions
+    public class AppConfig
     {
         public const string Bestbuy = "Bestbuy";
         public string ApiKey { get; set; } = String.Empty;

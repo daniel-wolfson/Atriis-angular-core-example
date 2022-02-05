@@ -3,7 +3,8 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  width: 99%;
+  height: calc(100vh - 780px);;
 }
 
 input {
@@ -16,6 +17,7 @@ input {
 
 .products li {
   position: relative;
+  width: auto;
   cursor: pointer;
 }
 

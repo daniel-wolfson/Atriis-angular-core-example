@@ -3,8 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
 import { ProductSearchComponent } from '../product-search/product-search.component';
-import { ProductService } from '../product.service';
-import { HEROES } from '../mock-products';
+import { ProductService } from '../services/product.service';
+import { PRODUCTS } from '../models/mock-products';
 
 import { AboutComponent } from './about.component';
 
@@ -16,7 +16,7 @@ describe('AboutComponent', () => {
 
   beforeEach(waitForAsync(() => {
     productService = jasmine.createSpyObj('ProductService', ['getProducts']);
-    getProductsSpy = productService.getProducts.and.returnValue(of(HEROES));
+    getProductsSpy = productService.getProducts.and.returnValue(of(PRODUCTS));
     TestBed
         .configureTestingModule({
             declarations: [AboutComponent, ProductSearchComponent],
