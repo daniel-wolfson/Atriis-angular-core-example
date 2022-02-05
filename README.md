@@ -2,7 +2,7 @@
 # Angular + TypeScript + .NET Core
 
 ## location on github
-https://github.com/daniel-wolfson/atriis_angular_core.git
+https://github.com/daniel-wolfson/Atriis-angular-core-example.git
 
 ## About this Project
 
