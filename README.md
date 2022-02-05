@@ -6,45 +6,39 @@ https://github.com/daniel-wolfson/atriis_angular_core.git
 
 ## About this Project
 
-A sample project combining a variety of useful web development technologies originally shown to work together React.
-This app features:
-- Angular
-- TypeScript
-- Bootstrap
-- Asp Net Core 3.1
+A sample project combining a variety of useful web development technologies 
+originally shown to work together Angular.
 
-## Solution structure
+## Solution "AtriisProducts" structure
 
-Current RootDirectory: [[drive:\\projects]\atriis_angular_core]
+- Frontend - Project "ProductClient" uses Angular, TypeScript, Bootstrap
+- Beckend - Project "ProductApi" uses Asp Net Core 3.1
+
+#### Beckend
 
 - ProductApi.sln is the entry point for "classic" editions of Visual Studio (Pro, Community, etc).
 - ProductApi/ProductApi.csproj is a Web api (asp net core) project.
-- ProductApi.Tests/ProductApi.Tests.csproj is a unit test for web api project.
-- Productlient - Angular client
 
-## Set local angular environment by calling cmd and install commands:
-- Windows install (Angular CLI requires a minimum nodejs version): https://nodejs.org/en/ => node-v16.13.2-x64.msi download => install
-- CMD: 
+Warning! project is self web host contained service, 
+and it starts as console application
+
+## Frontend
+
+- cd [RootDirectory]\ProductClient
+- required once:
+    Windows install (Angular CLI requires a minimum nodejs version): 
+    https://nodejs.org/en/ => node-v16.13.2-x64.msi download => install
     npm install -g npm
     npm install -g npm@8.4.1
     npm install -g @angular/cli@latest
-    ng update
-
-
-## Build and start ProductClient (Angular client)
-
-- cd [RootDirectory]\ProductClient
-- npm install
 - ng serve --open
-- client working on http://localhost:4200
+- client by default working on http://localhost:4200 (if port 4200 already in use, select the other free port)
 - client working with web api started on http://localhost:5000
 
 ## Build and start ProductApi (asp net web api)
-
-- build from visual studio (or visual studio code): build solution
-- build from visual studio code: dotnet build .
-- unit test (xUnit) api: start with visual studio unit test explorer
+    (build occured from visual studio 2019)
+- build solution
 - start api:
     - cd [RootDirectory]\ProductApi\bin\Debug\netcoreapp3.1
-    - ProductApi.exe
+    - AtriisProductApi.exe
     - app starting on http://localhost:5000
