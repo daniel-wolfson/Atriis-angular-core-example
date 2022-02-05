@@ -8,16 +8,16 @@ import { Product } from './product';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const products = [
-      { sku: 11, name: 'Dr Nice' },
-      { sku: 12, name: 'Narco' },
-      { sku: 13, name: 'Bombasto' },
-      { sku: 14, name: 'Celeritas' },
-      { sku: 15, name: 'Magneta' },
-      { sku: 16, name: 'RubberMan' },
-      { sku: 17, name: 'Dynama' },
-      { sku: 18, name: 'Dr IQ' },
-      { sku: 19, name: 'Magma' },
-      { sku: 20, name: 'Tornado' }
+        { sku: 11, name: 'Dr Nice', price: 10.0, image: 'img' },
+        { sku: 12, name: 'Narco', price: 10.0, image: 'img' },
+        { sku: 13, name: 'Bombasto', price: 10.0, image: 'img' },
+        { sku: 14, name: 'Celeritas', price: 10.0, image: 'img' },
+        { sku: 15, name: 'Magneta', price: 10.0, image: 'img' },
+        { sku: 16, name: 'RubberMan', price: 10.0, image: 'img' },
+        { sku: 17, name: 'Dynama', price: 10.0, image: 'img' },
+        { sku: 18, name: 'Dr IQ', price: 10.0, image: 'img' },
+        { sku: 19, name: 'Magma', price: 10.0, image: 'img' },
+        { sku: 20, name: 'Tornado', price: 10.0, image: 'img' }
     ];
     return {products};
   }

@@ -1,4 +1,6 @@
 export interface Product {
-  id: number;
-  name: string;
+    sku: number;
+    name: string;
+    price: number;
+    image: string;
 }

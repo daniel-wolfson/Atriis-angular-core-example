@@ -9,7 +9,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
@@ -31,7 +31,7 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   declarations: [
     AppComponent,
-    DashboardComponent,
+    AboutComponent,
     ProductsComponent,
     ProductDetailComponent,
     MessagesComponent,

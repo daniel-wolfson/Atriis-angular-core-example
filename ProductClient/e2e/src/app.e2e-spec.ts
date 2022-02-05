@@ -3,12 +3,12 @@ import { browser, element, by, ElementFinder, ElementArrayFinder } from 'protrac
 const expectedH1 = 'Tour of Products';
 const expectedTitle = `${expectedH1}`;
 const targetProduct = { sku: 15, name: 'Magneta' };
-const targetProductDashboardIndex = 3;
+const targetProductAboutIndex = 3;
 const nameSuffix = 'X';
 const newProductName = targetProduct.name + nameSuffix;
 
 class Product {
-  constructor(public id: number, public name: string) {}
+    constructor(public sku: number, public name: string, imange: string, price: string) { }
 
   // Factory methods
 
@@ -16,7 +16,8 @@ class Product {
   static fromString(s: string): Product {
     return new Product(
       +s.substr(0, s.indexOf(' ')),
-      s.substr(s.indexOf(' ') + 1),
+        s.substr(s.indexOf(' ') + 1),
+      "image.png", "0.1"
     );
   }
 
@@ -24,7 +25,7 @@ class Product {
   static async fromLi(li: ElementFinder): Promise<Product> {
     const stringsFromA = await li.all(by.css('a')).getText();
     const strings = stringsFromA[0].split(' ');
-    return { id: +strings[0], name: strings[1] };
+    return { sku: +strings[0], name: strings[1] };
   }
 
   // Product id and name from the given detail element.
@@ -34,7 +35,7 @@ class Product {
     // Get name from the h2
     const name = await detail.element(by.css('h2')).getText();
     return {
-      id: +id.substr(id.indexOf(' ') + 1),
+      sku: +id.substr(id.indexOf(' ') + 1),
       name: name.substr(0, name.lastIndexOf(' '))
     };
   }
@@ -50,9 +51,9 @@ describe('Tutorial part 6', () => {
     return {
       navElts,
 
-      appDashboardHref: navElts.get(0),
-      appDashboard: element(by.css('app-root app-dashboard')),
-      topProducts: element.all(by.css('app-root app-dashboard > div a')),
+      appAboutHref: navElts.get(0),
+      appAbout: element(by.css('app-root app-dashboard')),
+      topProducts: element.all(by.css('app-root app-about > div a')),
 
       appProductsHref: navElts.get(1),
       appProducts: element(by.css('app-root app-products')),
@@ -76,20 +77,20 @@ describe('Tutorial part 6', () => {
       await expectHeading(1, expectedH1);
     });
 
-    const expectedViewNames = ['Dashboard', 'Products'];
+      const expectedViewNames = ['About', 'Products'];
     it(`has views ${expectedViewNames}`, async () => {
       const viewNames = await getPageElts().navElts.map(el => el!.getText());
       expect(viewNames).toEqual(expectedViewNames);
     });
 
-    it('has dashboard as the active view', async () => {
+    it('has about as the active view', async () => {
       const page = getPageElts();
-      expect(await page.appDashboard.isPresent()).toBeTruthy();
+        expect(await page.appAbout.isPresent()).toBeTruthy();
     });
 
   });
 
-  describe('Dashboard tests', () => {
+  describe('About tests', () => {
 
     beforeAll(() => browser.get(''));
 
@@ -98,27 +99,27 @@ describe('Tutorial part 6', () => {
       expect(await page.topProducts.count()).toEqual(4);
     });
 
-    it(`selects and routes to ${targetProduct.name} details`, dashboardSelectTargetProduct);
+      it(`selects and routes to ${targetProduct.name} details`, aboutSelectTargetProduct);
 
     it(`updates product name (${newProductName}) in details view`, updateProductNameInDetailView);
 
-    it(`cancels and shows ${targetProduct.name} in Dashboard`, async () => {
+      it(`cancels and shows ${targetProduct.name} in About`, async () => {
       await element(by.buttonText('go back')).click();
       await browser.waitForAngular(); // seems necessary to gets tests to pass for toh-pt6
 
-      const targetProductElt = getPageElts().topProducts.get(targetProductDashboardIndex);
+        const targetProductElt = getPageElts().topProducts.get(targetProductAboutIndex);
       expect(await targetProductElt.getText()).toEqual(targetProduct.name);
     });
 
-    it(`selects and routes to ${targetProduct.name} details`, dashboardSelectTargetProduct);
+      it(`selects and routes to ${targetProduct.name} details`, aboutSelectTargetProduct);
 
     it(`updates product name (${newProductName}) in details view`, updateProductNameInDetailView);
 
-    it(`saves and shows ${newProductName} in Dashboard`, async () => {
+      it(`saves and shows ${newProductName} in About`, async () => {
       await element(by.buttonText('save')).click();
       await browser.waitForAngular(); // seems necessary to gets tests to pass for toh-pt6
 
-      const targetProductElt = getPageElts().topProducts.get(targetProductDashboardIndex);
+        const targetProductElt = getPageElts().topProducts.get(targetProductAboutIndex);
       expect(await targetProductElt.getText()).toEqual(newProductName);
     });
 
@@ -150,13 +151,13 @@ describe('Tutorial part 6', () => {
     it(`shows ${newProductName} in Products list`, async () => {
       await element(by.buttonText('save')).click();
       await browser.waitForAngular();
-      const expectedText = `${targetProduct.id} ${newProductName}`;
-      expect(await getProductAEltById(targetProduct.id).getText()).toEqual(expectedText);
+      const expectedText = `${targetProduct.sku} ${newProductName}`;
+        expect(await getProductAEltById(targetProduct.sku).getText()).toEqual(expectedText);
     });
 
     it(`deletes ${newProductName} from Products list`, async () => {
       const productsBefore = await toProductArray(getPageElts().allProducts);
-      const li = getProductLiEltById(targetProduct.id);
+        const li = getProductLiEltById(targetProduct.sku);
       await li.element(by.buttonText('x')).click();
 
       const page = getPageElts();
@@ -183,8 +184,8 @@ describe('Tutorial part 6', () => {
 
       expect(productsAfter.slice(0, numProducts)).toEqual(productsBefore, 'Old products are still there');
 
-      const maxId = productsBefore[productsBefore.length - 1].id;
-      expect(productsAfter[numProducts]).toEqual({id: maxId + 1, name: addedProductName});
+      const maxId = productsBefore[productsBefore.length - 1].sku;
+      expect(productsAfter[numProducts]).toEqual({sku: maxId + 1, name: addedProductName});
     });
 
     it('displays correctly styled buttons', async () => {
@@ -245,13 +246,13 @@ describe('Tutorial part 6', () => {
       const page = getPageElts();
       expect(await page.productDetail.isPresent()).toBeTruthy('shows product detail');
       const product2 = await Product.fromDetail(page.productDetail);
-      expect(product2.id).toEqual(targetProduct.id);
+      expect(product2.sku).toEqual(targetProduct.sku);
       expect(product2.name).toEqual(targetProduct.name.toUpperCase());
     });
   });
 
-  async function dashboardSelectTargetProduct() {
-    const targetProductElt = getPageElts().topProducts.get(targetProductDashboardIndex);
+  async function aboutSelectTargetProduct() {
+    const targetProductElt = getPageElts().topProducts.get(targetProductAboutIndex);
     expect(await targetProductElt.getText()).toEqual(targetProduct.name);
     await targetProductElt.click();
     await browser.waitForAngular(); // seems necessary to gets tests to pass for toh-pt6
@@ -259,7 +260,7 @@ describe('Tutorial part 6', () => {
     const page = getPageElts();
     expect(await page.productDetail.isPresent()).toBeTruthy('shows product detail');
     const product = await Product.fromDetail(page.productDetail);
-    expect(product.sku).toEqual(targetProduct.id);
+    expect(product.sku).toEqual(targetProduct.sku);
     expect(product.name).toEqual(targetProduct.name.toUpperCase());
   }
 
@@ -269,7 +270,7 @@ describe('Tutorial part 6', () => {
 
     const page = getPageElts();
     const product = await Product.fromDetail(page.productDetail);
-    expect(product.sku).toEqual(targetProduct.id);
+    expect(product.sku).toEqual(targetProduct.sku);
     expect(product.name).toEqual(newProductName.toUpperCase());
   }
 

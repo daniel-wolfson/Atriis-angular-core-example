@@ -6,11 +6,11 @@ import { ProductSearchComponent } from '../product-search/product-search.compone
 import { ProductService } from '../product.service';
 import { HEROES } from '../mock-products';
 
-import { DashboardComponent } from './dashboard.component';
+import { AboutComponent } from './about.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('AboutComponent', () => {
+    let component: AboutComponent;
+    let fixture: ComponentFixture<AboutComponent>;
   let productService;
   let getProductsSpy: jasmine.Spy;
 
@@ -19,7 +19,7 @@ describe('DashboardComponent', () => {
     getProductsSpy = productService.getProducts.and.returnValue(of(HEROES));
     TestBed
         .configureTestingModule({
-          declarations: [DashboardComponent, ProductSearchComponent],
+            declarations: [AboutComponent, ProductSearchComponent],
           imports: [RouterTestingModule.withRoutes([])],
           providers: [{provide: ProductService, useValue: productService}]
         })
@@ -27,7 +27,7 @@ describe('DashboardComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+      fixture = TestBed.createComponent(AboutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

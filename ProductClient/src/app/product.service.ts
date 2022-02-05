@@ -30,26 +30,26 @@ export class ProductService {
       );
   }
 
-  /** GET product by id. Return `undefined` when id not found */
-  getProductNo404<Data>(id: number): Observable<Product> {
-    const url = `${this.productsUrl}/?id=${id}`;
+  /** GET product by sku. Return `undefined` when id not found */
+  getProductNo404<Data>(sku: number): Observable<Product> {
+    const url = `${this.productsUrl}/?id=${sku}`;
     return this.http.get<Product[]>(url)
       .pipe(
         map(products => products[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} product id=${id}`);
+            this.log(`${outcome} product sku=${sku}`);
         }),
-        catchError(this.handleError<Product>(`getProduct id=${id}`))
+          catchError(this.handleError<Product>(`getProduct sku=${sku}`))
       );
   }
 
-  /** GET product by id. Will 404 if id not found */
-  getProduct(id: number): Observable<Product> {
-    const url = `${this.productsUrl}/${id}`;
+  /** GET product by sku. Will 404 if id not found */
+  getProduct(sku: number): Observable<Product> {
+    const url = `${this.productsUrl}/${sku}`;
     return this.http.get<Product>(url).pipe(
-      tap(_ => this.log(`fetched product id=${id}`)),
-      catchError(this.handleError<Product>(`getProduct id=${id}`))
+      tap(_ => this.log(`fetched product id=${sku}`)),
+      catchError(this.handleError<Product>(`getProduct id=${sku}`))
     );
   }
 
@@ -72,7 +72,7 @@ export class ProductService {
   /** POST: add a new product to the server */
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(
-      tap((newProduct: Product) => this.log(`added product w/ id=${newProduct.id}`)),
+        tap((newProduct: Product) => this.log(`added product w/ id=${newProduct.sku}`)),
       catchError(this.handleError<Product>('addProduct'))
     );
   }
